@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { addRestaurant } from "./restaurantsSlice";
+import { useDispatch } from "react-redux"
 
 function RestaurantInput() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  
+  const dispatch = useDispatch() 
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -15,8 +18,14 @@ function RestaurantInput() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // add missing code
+    const newRestauarnt = {
+      name: name,
+      location: location,
+    }
+    dispatch(addRestaurant(newRestauarnt))
   }
+
+
 
   return (
     <form onSubmit={handleSubmit}>
